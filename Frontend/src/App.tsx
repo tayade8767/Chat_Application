@@ -1,4 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 // Define message type for TypeScript
 interface Message {
@@ -129,7 +131,7 @@ const App: React.FC = () => {
     setError(null);
 
     try {
-      const socket = new WebSocket('ws://localhost:8080');
+      const socket = new WebSocket(BACKEND_URL);
 
       socket.onopen = () => {
         console.log('Connected to WebSocket server for room creation');
@@ -149,7 +151,7 @@ const App: React.FC = () => {
 
   const connectToWebSocket = useCallback(() => {
     try {
-      const socket = new WebSocket('ws://localhost:8080');
+      const socket = new WebSocket(BACKEND_URL);
       setWs(socket);
       setError(null);
 
@@ -222,7 +224,7 @@ const App: React.FC = () => {
     setError(null);
 
     try {
-      const socket = new WebSocket('ws://localhost:8080');
+      const socket = new WebSocket(BACKEND_URL);
       setWs(socket);
 
       socket.onopen = () => {
